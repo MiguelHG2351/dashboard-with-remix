@@ -1,0 +1,28 @@
+datasource db {
+    provider          = "postgresql"
+    url               = env("DATABASE_URL")
+    shadowDatabaseUrl = env("SHADOW_DATABASE")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        String   @id @default(cuid())
+    name      String
+    username  String
+    image     String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    note      Note?
+}
+
+model Note {
+    id        String   @id @default(cuid())
+    content   String
+    userId    String   @unique
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+    user      User     @relation(fields: [userId], references: [id])
+}

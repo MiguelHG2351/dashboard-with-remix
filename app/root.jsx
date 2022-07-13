@@ -7,6 +7,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
+import Sidenav from "./components/Sidenav";
+import styles from './styles/tailwindcss.css';
+
+export const links = () => [
+  { rel: "stylesheet", href: styles },
+]
+
 export const meta = () => ({
   charset: "utf-8",
   title: "New Remix App",
@@ -20,8 +27,11 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body>
-        <Outlet />
+      <body className="min-h-screen">
+        <div className="flex">
+          <Sidenav />
+          <Outlet />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
