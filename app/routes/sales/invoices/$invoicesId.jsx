@@ -4,7 +4,7 @@ import prisma from '~/lib/prisma';
 
 export async function loader({ params }) {
 	// const id = params.invoiceId
-    const data = await prisma.user.findMany({})
+    const data = await prisma.note.findMany({})
     console.log(data)
     return json(data)
 }
